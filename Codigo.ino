@@ -24,14 +24,14 @@ void setup() {
 }
 void loop() {
   topServo.write(90);
-  delay(1000);
-  topServo.write(0);
+  delay(700);
+  topServo.write(10);
   color = readColor();
-  delay(1000);
+  delay(50);
 
   if(color==1){
     Serial.println("Color: Rojo");
-    bottomServo.write(170);
+    bottomServo.write(160);
     delay(1000);  
   }
   if(color==2){
@@ -44,7 +44,7 @@ void loop() {
   }
   
   delay(1000);
-  bottomServo.write(0);
+  bottomServo.write(10);
   color = 0;
 }
 
@@ -88,7 +88,7 @@ int readColor() {
     color = 1; // Rojo
     return color;
   } 
-  if( (R>=23 && R<=27) && (G>=23 && G<=29) && (B>=12 && B<=18)){
+  if( (R>=23 && R<=27) && (G>=20 && G<=29) && (B>=10 && B<=18)){
     color = 2; // Azul
     return color;
   }
