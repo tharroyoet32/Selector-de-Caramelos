@@ -20,22 +20,31 @@ void setup() {
   digitalWrite(S1, HIGH);
   topServo.attach(10);
   bottomServo.attach(11);
-  topServo.write(0);
-  bottomServo.write(0);
   Serial.begin(9600);
 }
 void loop() {
   topServo.write(90);
+  delay(1000);
+  topServo.write(0);
   color = readColor();
-  
-  delay(1000);  
-  
-  if(color == 1){
-    Serial.println("Color: Celeste");
+  delay(1000);
+
+  if(color==1){
+    Serial.println("Color: Rojo");
     bottomServo.write(170);
-    delay(1000);
+    delay(1000);  
+  }
+  if(color==2){
+    Serial.println("Color: Azúl");
+    bottomServo.write(150);
+  }
+  if(color==3){
+    Serial.println("Color: Verde");  
+    bottomServo.write(100);
   }
   
+  delay(1000);
+  bottomServo.write(0);
   color = 0;
 }
 
@@ -75,10 +84,18 @@ int readColor() {
   Serial.println("  ");
   delay(50);
 
-  if( (R>=15 && R<=24) && (G>=15 && G<=18) && (B>=8 && B<=12)){
+  if( (R>=16 && R<=21) && (G>=30 && G<=35) && (B>=19 && B<=23)){
     color = 1; // Rojo
-    return color; 
+    return color;
+  } 
+  if( (R>=23 && R<=27) && (G>=23 && G<=29) && (B>=12 && B<=18)){
+    color = 2; // Azul
+    return color;
   }
- 
+  if( (R>=16 && R<=23) && (G>=19 && G<=24) && (B>=14 && B<=19)){
+    color = 3; // Verde
+    return color;
+  }
+     
  return 0; 
 }
